@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-dark: 5 10 26; /* #050A1A */
+    --color-primary: 7 102 255; /* #0766FF */
+    --color-light: 245 247 255; /* #F5F7FF */
+    --color-accent: 114 9 183; /* #7209B7 */
+    --color-success: 6 214 160; /* #06D6A0 */
+    --color-warning: 255 209 102; /* #FFD166 */
+    --color-error: 239 71 111; /* #EF476F */
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark text-light font-sans selection:bg-primary/30 selection:text-light;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-lg;
+  }
+  
+  .section {
+    @apply py-20 md:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  }
+  
+  .btn {
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary text-light hover:bg-primary/90 shadow-lg shadow-primary/20;
+  }
+  
+  .btn-outline {
+    @apply btn border border-light/20 hover:border-light/40 hover:bg-white/5;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-spin-slow {
+    animation: spin 12s linear infinite;
+  }
+
+  .glow {
+    text-shadow: 0 0 10px theme('colors.primary'), 
+                0 0 20px theme('colors.primary');
+  }
+}
+
+/* Hide scrollbar but allow scrolling */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Custom cursor styles */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: theme('colors.primary');
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease-out, height 0.2s ease-out;
+}
+
+/* Hover animation for cards */
+.property-card {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.property-card:hover {
+  transform: translateY(-10px);
+}
