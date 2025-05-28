@@ -1,0 +1,32 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import ContactSection from '../components/sections/Contact';
+
+const Contact: React.FC = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  return (
+    <main className="relative z-10 pt-24">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="container mx-auto px-4 mb-16">
+          <h1 className="text-gradient text-center text-4xl md:text-5xl font-bold mb-8">Contact Us</h1>
+          <p className="text-light/80 text-center max-w-3xl mx-auto mb-12">
+            Get in touch with our team to discuss your real estate needs or schedule a property tour.
+          </p>
+        </div>
+        <ContactSection />
+      </motion.div>
+    </main>
+  );
+};
+
+export default Contact;
